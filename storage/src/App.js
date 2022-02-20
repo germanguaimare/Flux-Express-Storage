@@ -1,15 +1,24 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
+import * as actions from "./actions"
 
 import ItemCard from './components/itemCard';
 import MyModal from "./components/modal"
-import kitty from "./images/kitty.jpg"
+
 
 import "./styles/index.css"
 
 function App() {
-  useEffect(()=>{})
+  const dispatch = useDispatch()
   const myItems = useSelector(state => state.items)
+  const getItems = () => {
+    dispatch(actions.fetchItems())
+  }
+
+  useEffect(() => {
+    getItems()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, []) 
 
   return (
     <div className="App">
@@ -19,7 +28,7 @@ function App() {
           <ItemCard
             index = {index}
             key={index}
-            img={kitty}
+            img={myItems[index].image}
             title={myItems[index].name}
             description={myItems[index].description} />)}
       </div>

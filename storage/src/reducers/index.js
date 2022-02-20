@@ -1,4 +1,5 @@
-import items from "./items"
+import {items} from "./items"
+
 import { combineReducers } from "redux"
 
 const allReducers = combineReducers({
