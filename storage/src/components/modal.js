@@ -26,7 +26,7 @@ const MyModal = () => {
                     <Modal.Title>New Cat Info</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={handleSubmit((data) => dispatch(actions.add_item({name: data.newCatName, description: data.newCatDescription, image: data.newImgUrl })))}>
+                    <Form onSubmit={handleSubmit((data) => dispatch(actions.postItems(data)))}>
 
                         <Form.Group className="row d-flex justify-content-center"
                             controlId="nameInput"

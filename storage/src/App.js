@@ -23,7 +23,8 @@ function App() {
   return (
     <div className="App">
       <h3>My store</h3>
-      <div className="container-fluid d-flex">
+      <div className="container-fluid">
+        <div className="row d-flex">
         {myItems.map((key, index) =>
           <ItemCard
             index = {index}
@@ -31,6 +32,7 @@ function App() {
             img={myItems[index].image}
             title={myItems[index].name}
             description={myItems[index].description} />)}
+            </div>
       </div>
       <MyModal />
     </div>
