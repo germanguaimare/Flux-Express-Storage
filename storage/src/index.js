@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { render } from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
+import Home from "./home"
 import reportWebVitals from './reportWebVitals';
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
@@ -10,14 +17,28 @@ import allReducers from './reducers';
 
 const store = createStore(allReducers, applyMiddleware(thunk))
 
-ReactDOM.render(
+const rootElement = document.getElementById("root");
+
+render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="home" element={<Home />} />
+      </Routes>
+    </Provider>
+  </BrowserRouter>,
+  rootElement
+);
+
+/*ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
     <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
-);
+);*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

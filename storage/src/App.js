@@ -10,31 +10,11 @@ import "./styles/index.css"
 
 function App() {
   const dispatch = useDispatch()
-  const myItems = useSelector(state => state.items)
-  const getItems = () => {
-    dispatch(actions.fetchItems())
-  }
-
-  useEffect(() => {
-    getItems()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
- }, []) 
 
   return (
     <div className="App">
       <h3>My store</h3>
-      <div className="container-fluid">
-        <div className="row d-flex">
-        {myItems.map((key, index) =>
-          <ItemCard
-            index = {index}
-            key={index}
-            img={myItems[index].image}
-            title={myItems[index].name}
-            description={myItems[index].description} />)}
-            </div>
-      </div>
-      <MyModal />
+      <p>Please log in</p>
     </div>
   );
 }
