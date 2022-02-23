@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("../images/Background.jpg");
+  background-size: cover;
 }
 
 code {
@@ -13,5 +15,30 @@ code {
 }
 
 .cardBody {
-  width: 18rem;
+  width: 16rem;
+  margin-bottom: 1rem;
+}
+
+.sessionCardBody {
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  width: 24rem;
+}
+
+.form-group {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.buttonGroup{
+  margin-top: 1rem
+}
+
+.sessionButton{
+  margin-left: 1rem;
+  margin-right: 1rem;
 }

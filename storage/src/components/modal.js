@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Modal, Button, Form } from "react-bootstrap"
 import kitty from "../images/kitty.jpg"
+import "../styles/modal.css"
 import { useDispatch } from "react-redux";
 import * as actions from "../actions"
 
@@ -17,49 +18,52 @@ const MyModal = () => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="success" onClick={handleShow}>
                 Add new cat
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} class="modal-dialog modal-dialog-centered" onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>New Cat Info</Modal.Title>
+                    <Modal.Title>Here goes your new cat info</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                <p><strong>Remember to get a URL for your new cat's image</strong></p>
                     <Form onSubmit={handleSubmit((data) => dispatch(actions.postItems(data)))}>
-
-                        <Form.Group className="row d-flex justify-content-center"
+                    <div className="container form-group mb-1">
+                        <Form.Group className="row d-flex justify-content-center align-items-center"
                             controlId="nameInput"
                         >
-                            <Form.Label className="col">Cat Name</Form.Label>
+                            <Form.Label className="col-4">Cat Name</Form.Label>
                             <Form.Control className="col" type="text" placeholder="New cat name"
                                 {...register("newCatName")}
                             />
                         </Form.Group>
-
-                        <Form.Group className="row d-flex justify-content-center" controlId="descriptionInput">
-                            <Form.Label className="col">Cat Description</Form.Label>
+                    </div>
+                    <div className="container form-group mb-1">
+                        <Form.Group className="row d-flex justify-content-center align-items-center" controlId="descriptionInput">
+                            <Form.Label className="col-4">Cat Description</Form.Label>
                             <Form.Control className="col" type="text" placeholder="New cat description"
                                 {...register("newCatDescription")}
                             />
                         </Form.Group>
-
-                        <Form.Group className="row d-flex justify-content-center" controlId="imageInput">
-                            <Form.Label className="col">Cat Image Url</Form.Label>
+                        </div>
+                        <div className="container form-group mb-1">
+                        <Form.Group className="row d-flex justify-content-center align-items-center" controlId="imageInput">
+                            <Form.Label className="col-4">Cat Image Url</Form.Label>
                             <Form.Control className="col" type="text" placeholder="Url for new cat's image"
                                 {...register("newImgUrl")}
                             />
                         </Form.Group>
-
+                        </div>
                         <hr></hr>
 
                         <div className="text-end">
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" type="submit"
+                            <Button className="mx-1" variant="primary" type="submit"
                                 onClick={handleClose}>
                                 Save New Cat
+                            </Button>
+                            <Button className="mx-1" variant="secondary" onClick={handleClose}>
+                                Close
                             </Button>
                         </div>
                     </Form>

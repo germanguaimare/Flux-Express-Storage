@@ -1,17 +1,3 @@
-
-/*export const delete_item = (index) => {
-    return {
-        type: "delete_item",
-        payload: index
-    }
-}
-export const add_item = (newCat) => {
-    return {
-        type: "add_item",
-        payload: newCat
-    }
-}*/
-
 export const fetchItems = () => async (dispatch, getState) => {
     const items = await fetch("https://4000-germanguaimare-fluxexpre-j835dwh3g6z.ws-us33.gitpod.io/items")
         .then(response => response.json())
@@ -44,8 +30,6 @@ export const postItems = (data) => async (dispatch, getState) => {
         redirect: 'follow'
     };
 
-    console.log(data)
-
     fetch("https://4000-germanguaimare-fluxexpre-j835dwh3g6z.ws-us33.gitpod.io/items", requestOptions)
         .then(response => response.text())
         .then(result => {
@@ -53,7 +37,6 @@ export const postItems = (data) => async (dispatch, getState) => {
             dispatch(fetchItems())
         })
         .catch(error => console.log('error', error));
-    //dispatch(add_item({name: data.name, description: data.description, image: data.image}))
 }
 
 export const delete_item = (index) => (dispatch, getState) => {
@@ -102,6 +85,76 @@ export const editItem = (data, index) => (dispatch, getState) => {
     fetch("https://4000-germanguaimare-fluxexpre-j835dwh3g6z.ws-us33.gitpod.io/items", requestOptions)
         .then(response => response.text())
         .then(result => {
-            dispatch(fetchItems())})
+            dispatch(fetchItems())
+        })
         .catch(error => console.log('error', error));
 }
+
+export const logIn = (data, navigate, dispatch) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "username": data.username,
+        "password": data.password,
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://4000-germanguaimare-fluxexpre-j835dwh3g6z.ws-us33.gitpod.io/login", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            if (result.accessToken) {
+                navigate('home');
+                localStorage.setItem('tokenInfo', JSON.stringify(result));
+            }
+        })
+        .catch(error => {
+            alert("Wrong username or password");
+        });
+
+}
+
+export const setActiveUser = (data) => {
+    return {
+        type: "active",
+        payload: data.username
+    }
+}
+export const logOut = (navigate) => {
+    localStorage.removeItem("tokenInfo")
+    navigate("/")
+}
+
+export const createUser = (data, setShow) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "newUsername": data.newUsername,
+        "newPassword": data.newPassword,
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://4000-germanguaimare-fluxexpre-j835dwh3g6z.ws-us33.gitpod.io/users", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            if (result === "New user created") {
+                alert(result)
+                setShow(false)
+            }
+        })
+        .catch(error => console.log('error', error));
+}
+
