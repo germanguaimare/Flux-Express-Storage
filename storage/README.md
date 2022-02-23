@@ -5,6 +5,7 @@ To run the REST API:
 2) Run npm install
 3) Run node server.js
 4) Make sure your 4000 port is public
+5) Make sure the routes in storage/src/actions/index.js match your urls
 
 To run the Front-End:
 1) Navigate to storage
